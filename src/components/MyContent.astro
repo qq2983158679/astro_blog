@@ -1,0 +1,67 @@
+---
+import MySearch from "../components/MySearch.vue";
+---
+
+<div class="md:hidden py-6">
+  <input
+    class="shadow appearance-none rounded-[0.5rem] w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
+    id="emailaddress"
+    type="text"
+    placeholder="请输入搜索内容"
+  />
+  <div class="flex justify-center">
+    <button
+      class="w-[6rem] h-[3rem] text-text bg-blue_content rounded-[10px] my-2"
+      type="button">搜索</button
+    >
+  </div>
+</div>
+<section class="w-[10rem] m-auto md:m-1 md:flex md:w-full md:mt-[15vh]">
+  <div
+    class="w-[10rem] rounded-[1rem] overflow-hidden md:flex md:w-full md:bg-text"
+  >
+    <div class="md:block hidden md:basis-1/4 md:w-full">
+      <img
+        src="https://mp-c7d1b689-cd39-420a-83f9-733c744450c6.cdn.bspapp.com/cloudstorage/29e3c061-094b-4c5b-8555-5eb9aa189628.jpg"
+        alt=""
+      />
+    </div>
+    <div class="md:basis-2/4 md:block hidden">
+      <MySearch client:load />
+    </div>
+    <div
+      class="m-auto md:basis-1/4 md:my-[0] md:flex md:items-center md:flex-col box-border relative md:justify-center"
+    >
+      <div
+        class="hidden md:block absolute top-[0] left-[0] w-full h-full rotate-180"
+      >
+        <img
+          src="https://mp-c7d1b689-cd39-420a-83f9-733c744450c6.cdn.bspapp.com/cloudstorage/29e3c061-094b-4c5b-8555-5eb9aa189628.jpg"
+          alt=""
+        />
+      </div>
+      <div
+        class="md:w-[10rem] md:h-[10rem] rounded-[50%] overflow-hidden z-10 w-full h-full"
+      >
+        <img
+          class="md:w-full md:h-full md:block hidden"
+          src="https://mp-c7d1b689-cd39-420a-83f9-733c744450c6.cdn.bspapp.com/VKCEYUGU-c7d1b689-cd39-420a-83f9-733c744450c6/79a7bf43-9c41-445b-b9b3-d52b7fa23efa.jpg"
+          alt=""
+        />
+        <img
+          class="scale-[0.6] rounded-[50%]"
+          src="https://mp-c7d1b689-cd39-420a-83f9-733c744450c6.cdn.bspapp.com/VKCEYUGU-c7d1b689-cd39-420a-83f9-733c744450c6/79a7bf43-9c41-445b-b9b3-d52b7fa23efa.jpg"
+          alt=""
+        />
+      </div>
+      <div class="md:block md:basis-1/4 md:w-full z-10">
+        <p class="text-center my-1 text-text md:font-semibold">
+          「 是呆龙没错了 」
+        </p>
+        <p class="text-center my-2 text-text">一个新手程序员的个人博客</p>
+        <p class="text-center my-1 text-text">记录成长,知识沉淀!</p>
+      </div>
+    </div>
+  </div>
+  <div></div>
+</section>

@@ -1,51 +1,74 @@
 ---
-import type { CollectionEntry } from 'astro:content';
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import FormattedDate from '../components/FormattedDate.astro';
-
-type Props = CollectionEntry<'blog'>['data'];
-
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+import MyNav from "../components/MyNav.astro";
+import "../../public/md.css";
+const { title, headings } = Astro.props;
 ---
 
-<html lang="en">
-	<head>
-		<BaseHead title={title} description={description} />
-		<style>
-			.title {
-				font-size: 2em;
-				margin: 0.25em 0 0;
-			}
-			hr {
-				border-top: 1px solid #ddd;
-				margin: 1rem 0;
-			}
-			.last-updated-on {
-				font-style: italic;
-			}
-		</style>
-	</head>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+    <link rel="stylesheet" href="/iconfont/iconfont.css" />
+  </head>
 
-	<body>
-		<Header />
-		<main>
-			<article>
-				{heroImage && <img width={720} height={360} src={heroImage} alt="" />}
-				<h1 class="title">{title}</h1>
-				<FormattedDate date={pubDate} />
-				{
-					updatedDate && (
-						<div class="last-updated-on">
-							Last updated on <FormattedDate date={updatedDate} />
-						</div>
-					)
-				}
-				<hr />
-				<slot />
-			</article>
-		</main>
-		<Footer />
-	</body>
+  <body class="bg-blue_bg text-[#252933]">
+    <MyNav />
+    <div class="main mx-auto w-[60vw] pt-[80px]">
+      <div
+        class="fixed top-[200px] right-[5vw] hidden md:block bg-text rounded-[10px] max-w-[250px] text-[#262626]"
+      >
+        <div
+          class="text-[18px] text-center border-solid border-b-[1px] border-black py-2"
+        >
+          目录
+        </div>
+        <div class="flex-col flex">
+          {
+            headings.map(
+              (item: { depth: number; slug: string; text: string }) => {
+                return (
+                  <a href={`#${item.slug}`} class="p-1 truncate ">
+                    <button class="hover:text-[#3b82f6]  active:text-[#3b82f6]  focus:text-[#3b82f6] cursor-pointer">
+                      {item.text}
+                    </button>
+                  </a>
+                );
+              }
+            )
+          }
+        </div>
+      </div>
+      <div class="flex flex-col bg-text rounded-[10px]">
+        <div class="mainAticle">
+          <a href="/blog">返回列表页</a>
+          <div
+            class="text-[48px] text-center border-solid border-b-[1px] border-black py-2"
+          >
+            {title}
+          </div>
+          <slot />
+        </div>
+      </div>
+    </div>
+  </body>
+  <style>
+    .mainAticle {
+      width: 100%;
+      padding: 20px;
+      background-image: linear-gradient(
+          90deg,
+          rgba(60, 10, 30, 0.04) 3%,
+          transparent 0
+        ),
+        linear-gradient(1turn, rgba(60, 10, 30, 0.04) 3%, transparent 0);
+      background-size: 20px 20px;
+    }
+
+    body,
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
 </html>

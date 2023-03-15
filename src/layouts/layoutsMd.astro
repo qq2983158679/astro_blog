@@ -1,0 +1,14 @@
+---
+import BlogPost from "./BlogPost.astro";
+const { frontmatter, content, headings } = Astro.props;
+console.log(frontmatter);
+---
+
+<BlogPost title={frontmatter.title} content={content} headings={headings}>
+  <div class="flex justify-around py-2">
+    <p>日期：{frontmatter.pubDate.slice(0, 10)}</p>
+    <p>作者: {frontmatter.author}</p>
+  </div>
+  <p class="text-center">简介：{frontmatter.description}</p>
+  <slot />
+</BlogPost>

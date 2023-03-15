@@ -1,54 +1,49 @@
 ---
-import BaseHead from '../../components/BaseHead.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
-import { getCollection } from 'astro:content';
-import FormattedDate from '../../components/FormattedDate.astro';
+import BaseHead from "../../components/BaseHead.astro";
+import MySearch from "../../components/MySearch.vue";
+import Tab from "./tab.vue";
+import MyNav from "../../components/MyNav.astro";
+import ArticleList from "./articleList.vue";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
 
-const posts = (await getCollection('blog')).sort(
-	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
-);
+let allPosts = (await Astro.glob("../posts/*.md")) as any;
+const pageTitle = "TA 的博客";
+const tab_title = [
+  "HTML",
+  "CSS",
+  "JS",
+  "Vue",
+  "React",
+  "JAVA",
+  "Go",
+  "Node",
+  "astro",
+  "MongoDB",
+  "Git",
+];
+
+const { posts } = Astro.props;
+if (posts) {
+  allPosts = posts;
+}
 ---
 
-<!DOCTYPE html>
+<link rel="stylesheet" href="/iconfont/iconfont.css" />
+
 <html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-		<style>
-			ul {
-				list-style-type: none;
-				padding: unset;
-			}
-			ul li {
-				display: flex;
-			}
-			ul li :global(time) {
-				flex: 0 0 130px;
-				font-style: italic;
-				color: #595959;
-			}
-			ul li a:visited {
-				color: #8e32dc;
-			}
-		</style>
-	</head>
-	<body>
-		<Header />
-		<main>
-			<section>
-				<ul>
-					{
-						posts.map((post) => (
-							<li>
-								<FormattedDate date={post.data.pubDate} />
-								<a href={`/blog/${post.slug}/`}>{post.data.title}</a>
-							</li>
-						))
-					}
-				</ul>
-			</section>
-		</main>
-		<Footer />
-	</body>
+  <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  <body class="bg-blue_bg">
+    <MyNav />
+    <div class="w-[50vw] m-auto">
+      <MySearch color="#fff" client:load />
+    </div>
+    <div class="mt-[100px] mb-1">
+      <Tab tablist={tab_title} client:load />
+    </div>
+    <layoutsMd title={pageTitle}>
+      <div class="m-auto w-[70vw] px-6">
+        <ArticleList allPosts={allPosts} client:load />
+      </div>
+    </layoutsMd>
+  </body>
 </html>

@@ -1,0 +1,23 @@
+{
+  "id": "3946934",
+  "name": "astro",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "5485616",
+      "name": "错误",
+      "font_class": "cuowu",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "7949518",
+      "name": "更多",
+      "font_class": "gengduo",
+      "unicode": "e696",
+      "unicode_decimal": 59030
+    }
+  ]
+}
