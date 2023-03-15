@@ -1,0 +1,26 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+---
+
+<link rel="stylesheet" href="/iconfont/iconfont.css" />
+
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <div class="m-auto w-[1200px] h-[600px] mt-[13vh]">
+      <img
+        src="https://mp-c7d1b689-cd39-420a-83f9-733c744450c6.cdn.bspapp.com/cloudstorage/e863e409-0fd0-4262-ac38-475c55b6e329.png"
+        alt="404"
+      />
+      <a
+        href="/"
+        class="bg-[#87c56f] m-auto block w-[100px] h-[40px] text-center leading-[36px] text-text rounded-[20px] border-solid border-[2px] border-[#dfe18a] box-border"
+      >
+        返回主页
+      </a>
+    </div>
+  </body>
+</html>
