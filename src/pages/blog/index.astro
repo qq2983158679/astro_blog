@@ -26,6 +26,7 @@ const { posts } = Astro.props;
 if (posts) {
   allPosts = posts;
 }
+export const prerender = true;
 ---
 
 <link rel="stylesheet" href="/iconfont/iconfont.css" />

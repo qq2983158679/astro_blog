@@ -1,0 +1,71 @@
+---
+import BaseHead from "../../components/BaseHead.astro";
+import TabBar from "./tabBar.vue";
+import MyTitle from "./MyTitle.vue";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
+import "../../../public/md.css";
+let allPosts = (await Astro.glob("./content/*.mdx")) as any;
+const { frontmatter, headings } = Astro.props;
+export const prerender = true;
+console.log(frontmatter, headings);
+---
+
+<html lang="zh">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <link rel="stylesheet" href="/iconfont/iconfont.css" />
+  </head>
+  <body class="text-[#252933] min-h-[100vh]">
+    <header
+      class="h-[70px] w-full absolute bg-text flex items-center"
+      style="box-shadow: 0 2px 8px rgba(0, 0, 0, .15); "
+    >
+      <div class="basis-1/2 px-3 flex items-center">
+        <div class="">
+          <img
+            class="w-[60px] h-[60px] rounded-[5px]"
+            src="https://mp-c7d1b689-cd39-420a-83f9-733c744450c6.cdn.bspapp.com/VKCEYUGU-c7d1b689-cd39-420a-83f9-733c744450c6/79a7bf43-9c41-445b-b9b3-d52b7fa23efa.jpg"
+            alt=""
+          />
+        </div>
+        <h4 class="text-userText ml-3">是呆龙没错了</h4>
+      </div>
+      <div class="basis-1/2">
+        <div class="tab ml-3 float-right">
+          <a href="/blog" class="text-userText mr-6">TA的博客</a>
+          <a href="/" class="text-userText mr-6">回到主页</a>
+        </div>
+      </div>
+    </header>
+    <div class="mx-auto flex flex-row">
+      <TabBar allPosts={allPosts} client:load />
+      <MyTitle headings={headings} client:load />
+      <div
+        class="basis-5/6 h-[100vh] overflow-y-scroll"
+        style="scroll-behavior: smooth;"
+      >
+        <div class="title min-w-[830px] mx-auto pt-[100px] max-w-[950px]">
+          <div class="flex flex-row items-center">
+            <span
+              class={frontmatter.icon}
+              style="font-size:36px;color:#3eaf7c; margin-right: 20px;"
+            >
+            </span>
+            <span class="font-bold iocnfont text-4xl text-[#2c3e50]">
+              {frontmatter.title}
+            </span>
+          </div>
+          <div class="text-[#2c3e50]">
+            <slot />
+          </div>
+        </div>
+      </div>
+    </div>
+    <style>
+      body,
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+  </body>
+</html>

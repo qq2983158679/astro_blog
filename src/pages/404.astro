@@ -1,6 +1,7 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+export const prerender = true;
 ---
 
 <link rel="stylesheet" href="/iconfont/iconfont.css" />
@@ -10,7 +11,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
   </head>
   <body>
-    <div class="m-auto w-[1200px] h-[600px] mt-[13vh]">
+    <div class="m-auto w-[1200px] h-[600px] mt-[13vh] translate-x-[-50px]">
       <img
         src="https://mp-c7d1b689-cd39-420a-83f9-733c744450c6.cdn.bspapp.com/cloudstorage/e863e409-0fd0-4262-ac38-475c55b6e329.png"
         alt="404"

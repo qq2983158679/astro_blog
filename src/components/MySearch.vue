@@ -20,6 +20,7 @@ const searchText = () => {
   location.href = '/blog'
 }
 onMounted(() => {
+  localStorage.removeItem('searchText')
   window.addEventListener('keyup', (e: any) => {
     if (e.key === 'Enter') {
       searchText()

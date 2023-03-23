@@ -1,7 +1,7 @@
 ---
 import BlogPost from "./BlogPost.astro";
 const { frontmatter, content, headings } = Astro.props;
-console.log(frontmatter);
+export const prerender = true;
 ---
 
 <BlogPost title={frontmatter.title} content={content} headings={headings}>

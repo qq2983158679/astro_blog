@@ -1,45 +1,42 @@
 ---
 import MyNav from "../components/MyNav.astro";
+import BaseHead from "../components/BaseHead.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import "../../public/md.css";
 const { title, headings } = Astro.props;
+export const prerender = true;
 ---
 
 <html lang="zh">
   <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <title>{title}</title>
     <link rel="stylesheet" href="/iconfont/iconfont.css" />
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
   </head>
-
   <body class="bg-blue_bg text-[#252933]">
     <MyNav />
     <div class="main mx-auto w-[60vw] pt-[80px]">
-      <div
-        class="fixed top-[200px] right-[5vw] hidden md:block bg-text rounded-[10px] max-w-[250px] text-[#262626]"
-      >
-        <div
-          class="text-[18px] text-center border-solid border-b-[1px] border-black py-2"
-        >
-          目录
-        </div>
-        <div class="flex-col flex">
-          {
-            headings.map(
-              (item: { depth: number; slug: string; text: string }) => {
-                return (
-                  <a href={`#${item.slug}`} class="p-1 truncate ">
-                    <button class="hover:text-[#3b82f6]  active:text-[#3b82f6]  focus:text-[#3b82f6] cursor-pointer">
-                      {item.text}
-                    </button>
-                  </a>
-                );
-              }
-            )
-          }
-        </div>
-      </div>
+      {
+        headings.length != 0 && (
+          <div class="fixed top-[200px] right-[5vw] hidden md:block bg-text rounded-[10px] max-w-[250px] text-[#262626]">
+            <div class="text-[18px] text-center border-solid border-b-[1px] border-black py-2">
+              目录
+            </div>
+            <div class="flex-col flex">
+              {headings.map(
+                (item: { depth: number; slug: string; text: string }) => {
+                  return (
+                    <a href={`#${item.slug}`} class="p-1 truncate ">
+                      <button class="hover:text-[#3b82f6]  active:text-[#3b82f6]  focus:text-[#3b82f6] cursor-pointer">
+                        {item.text}
+                      </button>
+                    </a>
+                  );
+                }
+              )}
+            </div>
+          </div>
+        )
+      }
       <div class="flex flex-col bg-text rounded-[10px]">
         <div class="mainAticle">
           <a href="/blog">返回列表页</a>
@@ -52,23 +49,23 @@ const { title, headings } = Astro.props;
         </div>
       </div>
     </div>
-  </body>
-  <style>
-    .mainAticle {
-      width: 100%;
-      padding: 20px;
-      background-image: linear-gradient(
-          90deg,
-          rgba(60, 10, 30, 0.04) 3%,
-          transparent 0
-        ),
-        linear-gradient(1turn, rgba(60, 10, 30, 0.04) 3%, transparent 0);
-      background-size: 20px 20px;
-    }
+    <style>
+      .mainAticle {
+        width: 100%;
+        padding: 20px;
+        background-image: linear-gradient(
+            90deg,
+            rgba(60, 10, 30, 0.04) 3%,
+            transparent 0
+          ),
+          linear-gradient(1turn, rgba(60, 10, 30, 0.04) 3%, transparent 0);
+        background-size: 20px 20px;
+      }
 
-    body,
-    html {
-      scroll-behavior: smooth;
-    }
-  </style>
+      body,
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+  </body>
 </html>

@@ -3,10 +3,9 @@
   "compilerOptions": {
     "strictNullChecks": true,
     "importsNotUsedAsValues": "error",
+    "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
+      "@src/*": ["src/*"]
     },
     "jsx": "preserve"
   }

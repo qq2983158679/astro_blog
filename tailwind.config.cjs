@@ -21,7 +21,10 @@ module.exports = {
 			'blue_box': '#B17AA1',
 			'blue_content': '#F5B6A4',
 			'text': '#fff',
-			"content": '#18191C'
+			"content": '#18191C',
+			"userBg": "rgba(62, 175, 124, .15)",
+			"userBox": "#3eaf7c",
+			"userText": "#2c3e50"
 		},
 		spacing: {
 			'1': '8px',
