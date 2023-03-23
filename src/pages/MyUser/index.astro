@@ -7,7 +7,6 @@ import "../../../public/md.css";
 let allPosts = (await Astro.glob("./content/*.mdx")) as any;
 const { frontmatter, headings } = Astro.props;
 export const prerender = true;
-console.log(frontmatter, headings);
 ---
 
 <html lang="zh">
@@ -47,7 +46,7 @@ console.log(frontmatter, headings);
         <div class="title min-w-[830px] mx-auto pt-[100px] max-w-[950px]">
           <div class="flex flex-row items-center">
             <span
-              class={frontmatter.icon}
+              class={frontmatter.icon && ""}
               style="font-size:36px;color:#3eaf7c; margin-right: 20px;"
             >
             </span>
